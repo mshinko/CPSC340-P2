@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BigNumArithmetic.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input-file" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/input-file.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BigNumArithmetic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Link.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/List.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Stack.java" afterDir="false" />
-    </list>
+    <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="file reading and basic setup" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +62,18 @@
       <option name="presentableId" value="Default" />
       <updated>1708538323264</updated>
     </task>
+    <task id="LOCAL-00001" summary="file reading and basic setup">
+      <created>1708559252041</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708559252041</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="file reading and basic setup" />
+    <option name="LAST_COMMIT_MESSAGE" value="file reading and basic setup" />
   </component>
 </project>
