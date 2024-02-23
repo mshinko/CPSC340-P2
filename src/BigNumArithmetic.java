@@ -20,8 +20,12 @@ public class BigNumArithmetic{
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim(); // Trim to remove leading/trailing whitespace
                 String[] splitted = line.split("\\s+");
-                stack.push(splitted[0]);
-                System.out.println(stack.topValue());
+                //stack.push(splitted[0]);
+                //stack.push(splitted[1]);
+                for(int i = 0; i < splitted.length; i++)
+                {
+                    System.out.println(splitted[i]);
+                }
             }
         } catch (FileNotFoundException e) {
             System.err.println("Input file not found: " + e.getMessage());
