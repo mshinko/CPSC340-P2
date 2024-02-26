@@ -25,9 +25,14 @@ public class BigNumArithmetic{
                     if(split.matches("\\d+")){
                         LList operand = stringToLL(split);
                         stack.push(operand);
-                    } else if (split.equals("+")){
+                    } else if (split.equals("+")) {
                         performAddition(stack);
-                    }else {
+                    }else if (split.equals("-")){
+                        performSubtraction(stack);
+                    }else if (split.equals("*")){
+                        performMultiplication(stack);
+                    }
+                    else {
                         System.out.println("Invalid " + split);
                         break;
                     }
@@ -64,10 +69,19 @@ public class BigNumArithmetic{
 
     public LList stringToLL(String number) {
         LList list = new LList();
+        boolean leadingZero = true;
         for (int i = 0; i < number.length(); i++) {
             char digitChar = number.charAt(i);
+            if(leadingZero && digitChar == '0')
+            {
+                continue;
+            }
             int digit = Character.getNumericValue(digitChar);
             list.append(digit);
+            leadingZero = false;
+        }
+        if(list.isEmpty()){
+            list.append(0);
         }
         return list;
     }
@@ -100,9 +114,20 @@ public class BigNumArithmetic{
 
         while (!operand1.isAtEnd() || !operand2.isAtEnd() || carry > 0)
         {
-            int digit1 = operand1.isAtEnd() ? 0 : (int) operand1.getValue();
-            int digit2 = operand2.isAtEnd() ? 0 : (int) operand2.getValue();
-
+            int digit1;
+            if(operand1.isAtEnd())
+            {
+                digit1 = 0;
+            }else {
+                digit1 = (int) operand1.getValue();
+            }
+            int digit2;
+            if(operand2.isAtEnd())
+            {
+                digit2 = 0;
+            }else {
+                digit2 = (int) operand2.getValue();
+            }
             int sum = digit1 + digit2 + carry;
 
             result.append(sum % 10);
@@ -112,6 +137,12 @@ public class BigNumArithmetic{
             operand2.next();
         }
         stack.push(result);
+    }
+    public void performSubtraction(AStack stack){
+
+    }
+    public void performMultiplication(AStack stack){
+
     }
 }
 
