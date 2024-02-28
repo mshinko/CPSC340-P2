@@ -4,6 +4,8 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class BigNumArithmetic{
+
+    private LStack obj = new LStack();
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println("Usage: java BigNumArithmetic <input-file>");
@@ -16,33 +18,40 @@ public class BigNumArithmetic{
     }
 
     public void processInputFile(String inputFile) {
+        String result = "";
         try (Scanner scanner = new Scanner(new File(inputFile))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim(); // Trim to remove leading/trailing whitespace
-                String[] splitted = line.split("\\s+");
-                AStack stack = new AStack();
-                for(String split : splitted){
-                    if(split.matches("\\d+")){
-                        LList operand = stringToLL(split);
-                        stack.push(operand);
-                    } else if (split.equals("+")) {
-                        performAddition(stack);
-                    }else if (split.equals("-")){
-                        performSubtraction(stack);
-                    }else if (split.equals("*")){
-                        performMultiplication(stack);
-                    }
-                    else {
-                        System.out.println("Invalid " + split);
-                        break;
+                String[] tokens = line.split("\\s+");
+                for (int i = 0; i < tokens.length; i++) {
+                    String token = tokens[i].trim();
+                    if (!token.equals("+") && !token.equals("-") && !token.equals("*")) {
+                        obj.push(token);
+                    } else {
+                        if (obj.length() < 2) {
+                            System.out.println("Not enough values");
+                        }
+                        String operand1 = (String) obj.pop();
+                        String operand2 = (String) obj.pop();
+                        if(token.equals("+"))
+                        {
+                            result = performAddition(operand1, operand2);
+                        } else if(token.equals("-"))
+                        {
+                            result = performSubtraction(operand1, operand2);
+                        } else if(token.equals("*"))
+                        {
+                            result = performMultiplication(operand1, operand2);
+                        }
+
+                        //System.out.println("Result " + result);
+                        obj.push(result);
                     }
                 }
-                if (stack.length() == 1)
-                {
-                    LList result = (LList) stack.pop();
-                    System.out.println(LLtoString(result));
-                }
+                System.out.println(result);
             }
+
+           // System.out.println(result);
         } catch (FileNotFoundException e) {
             System.err.println("Input file not found: " + e.getMessage());
         }
@@ -98,51 +107,50 @@ public class BigNumArithmetic{
         }
         return s.toString();
     }
-    public void performAddition(AStack stack){
-        if(stack.length() < 2){
-            System.out.println("Not enough values");
-            return;
-        }
-        LList operand2 = (LList) stack.pop();
-        LList operand1 = (LList) stack.pop();
+    public String performAddition(String operand1, String operand2) {
+        // Remove leading zeros from operands
+        LList list1 = stringToLL(operand1);
+        LList list2 = stringToLL(operand2);
+        operand1 = operand1.replaceFirst("^0+(?!$)", "");
+        operand2 = operand2.replaceFirst("^0+(?!$)", "");
 
-        LList result = new LList();
+        // Make operand1 and operand2 of equal length by padding with leading zeros if necessary
+        int maxLength = Math.max(operand1.length(), operand2.length());
+        operand1 = String.format("%" + maxLength + "s", operand1).replace(' ', '0');
+        operand2 = String.format("%" + maxLength + "s", operand2).replace(' ', '0');
+
+        // Initialize variables for addition
+        StringBuilder sum = new StringBuilder();
         int carry = 0;
 
-        operand1.moveToStart();
-        operand2.moveToStart();
+        // Traverse both operands from right to left and perform addition
+        for (int i = maxLength - 1; i >= 0; i--) {
+            int digit1 = operand1.charAt(i) - '0';
+            int digit2 = operand2.charAt(i) - '0';
 
-        while (!operand1.isAtEnd() || !operand2.isAtEnd() || carry > 0)
-        {
-            int digit1;
-            if(operand1.isAtEnd())
-            {
-                digit1 = 0;
-            }else {
-                digit1 = (int) operand1.getValue();
-            }
-            int digit2;
-            if(operand2.isAtEnd())
-            {
-                digit2 = 0;
-            }else {
-                digit2 = (int) operand2.getValue();
-            }
-            int sum = digit1 + digit2 + carry;
+            int total = digit1 + digit2 + carry;
+            int resultDigit = total % 10;
+            carry = total / 10;
 
-            result.append(sum % 10);
-            carry = sum/10;
-
-            operand1.next();
-            operand2.next();
+            // Prepend the resultDigit to the sum
+            sum.insert(0, resultDigit);
         }
-        stack.push(result);
-    }
-    public void performSubtraction(AStack stack){
 
-    }
-    public void performMultiplication(AStack stack){
+        // Add any remaining carry
+        if (carry > 0) {
+            sum.insert(0, carry);
+        }
 
+        // Return the sum as a string
+        return sum.toString();
+    }
+
+    public String performSubtraction(String operand1, String operand2){
+
+        return null;
+    }
+    public String performMultiplication(String operand1, String operand2){
+        return null;
     }
 }
 

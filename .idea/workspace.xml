@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="adding">
+      <change afterPath="$PROJECT_DIR$/src/LStack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input-file" beforeDir="false" afterPath="$PROJECT_DIR$/input-file" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input-file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input-file.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AStack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BigNumArithmetic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigNumArithmetic.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708982591009</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="adding">
+      <created>1708983414909</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708983414909</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

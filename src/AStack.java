@@ -17,10 +17,16 @@ class AStack implements Stack {
     // Push "it" onto stack
     public boolean push(Object it) {
         if (top >= maxSize) {
-            AStack stack = new AStack(maxSize * 2);
+            resize(maxSize * 2);
         }
         stackArray[top++] = it;
         return true;
+    }
+    private void resize(int newSize) {
+        Object[] newArray = new Object[newSize];
+        System.arraycopy(stackArray, 0, newArray, 0, maxSize);
+        maxSize = newSize;
+        stackArray = newArray;
     }
     // Remove and return top element
     public Object pop() {
