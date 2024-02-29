@@ -19,12 +19,19 @@ public class BigNumArithmetic{
 
     public void processInputFile(String inputFile) {
         String result = "";
+        String equation = "";
         try (Scanner scanner = new Scanner(new File(inputFile))) {
             while (scanner.hasNextLine()) {
+                obj.clear();
                 String line = scanner.nextLine().trim(); // Trim to remove leading/trailing whitespace
+                equation = line.replaceAll("\\s+", " ") + " = ";
                 String[] tokens = line.split("\\s+");
+                String token = null;
                 for (int i = 0; i < tokens.length; i++) {
-                    String token = tokens[i].trim();
+                    token = tokens[i].trim();
+                    if (token.length() == 0) {
+                        continue;
+                    }
                     if (!token.equals("+") && !token.equals("-") && !token.equals("*")) {
                         obj.push(token);
                     } else {
@@ -33,22 +40,29 @@ public class BigNumArithmetic{
                         }
                         String operand1 = (String) obj.pop();
                         String operand2 = (String) obj.pop();
-                        if(token.equals("+"))
-                        {
+                        String operation = "";
+                        if (token.equals("+")) {
+                            operation = token;
                             result = performAddition(operand1, operand2);
-                        } else if(token.equals("-"))
-                        {
+                        } else if (token.equals("-")) {
                             result = performSubtraction(operand1, operand2);
-                        } else if(token.equals("*"))
-                        {
+                        } else if (token.equals("*")) {
                             result = performMultiplication(operand1, operand2);
                         }
-
                         //System.out.println("Result " + result);
+
                         obj.push(result);
                     }
                 }
-                System.out.println(result);
+                if (!(token.length() == 0)) {
+                    if(!(obj.length() == 1))
+                    {
+                        System.out.println(equation);
+                    }else if(obj.length() == 1){
+                        equation += obj.pop();
+                        System.out.println(equation);
+                    }
+                }
             }
 
            // System.out.println(result);
