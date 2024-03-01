@@ -181,8 +181,25 @@ public class BigNumArithmetic{
         LList list2 = stringToLL(operand2);
         int maxLength = Math.max(list1.length(), list2.length());
         // Initialize variables for addition
-        StringBuilder sum = new StringBuilder();
-        return null;
+        String sum = String.valueOf(new StringBuilder());
+        int total1 = 0;
+        int total2 = 0;
+        int digit1 = 0;
+        int digit2 = 0;
+        for(int i =0; i < list2.length(); i++)
+        {
+           digit2 = (int) list2.getValue();
+           list2.next();
+           total2 = 0;
+           for(int n = 0; n < list1.length(); n++) {
+                digit1 = (int) list1.getValue();
+                list1.next();
+                total2 += digit1 * digit2 * (Math.pow(10, n));
+
+            }
+           total1 += total2 * (Math.pow(10, i));
+        }
+        return sum.toString();
     }
 }
 
