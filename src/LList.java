@@ -19,7 +19,7 @@ class LList implements List {
     }
 
     // Insert "it" at current position
-    public boolean insert(Object it) {
+    public boolean insert(Object it, int i) {
         curr.setNext(new Link(curr.element(), curr.next()));
         curr.setElement(it);
         if (tail == curr) tail = curr.next();  // New tail

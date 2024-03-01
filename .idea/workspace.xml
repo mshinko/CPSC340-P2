@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="adding">
-      <change afterPath="$PROJECT_DIR$/src/BigNumArithmeticTest.java" afterDir="false" />
+    <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="adding final professor said it is complete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BigNumArithmetic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BigNumArithmetic.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/input-file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input-file.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BigNumArithmetic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigNumArithmetic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/List.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/List.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +147,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709142832445</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="adding final professor said it is complete">
+      <created>1709232332080</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1709232332080</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +173,7 @@
     <MESSAGE value="input file and stack start" />
     <MESSAGE value="new stack size" />
     <MESSAGE value="adding" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding" />
+    <MESSAGE value="adding final professor said it is complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding final professor said it is complete" />
   </component>
 </project>

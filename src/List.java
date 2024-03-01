@@ -6,7 +6,7 @@ public interface List { // List class ADT
 
     // Insert "it" at the current location
     // The client must ensure that the list's capacity is not exceeded
-    public boolean insert(Object it);
+    public boolean insert(Object it, int i);
 
     // Append "it" at the end of the list
     // The client must ensure that the list's capacity is not exceeded

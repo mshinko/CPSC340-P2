@@ -92,16 +92,22 @@ public class BigNumArithmetic{
 
     public LList stringToLL(String number) {
         LList list = new LList();
-        boolean leadingZero = true;
-        for (int i = 0; i < number.length(); i++) {
-            char digitChar = number.charAt(i);
-            if(leadingZero && digitChar == '0')
-            {
-                continue;
+        int index = 0;
+        for(int n = 0; n < number.length(); n++)
+        {
+            if(number.charAt(n) != '0'){
+                index = n;
+                break;
             }
+            if(n == number.length() -1){
+                index = number.length() -1;
+            }
+        }
+        number = number.substring(index);
+        for (int i = number.length() -1; i >= 0; i--) {
+            char digitChar = number.charAt(i);
             int digit = Character.getNumericValue(digitChar);
             list.append(digit);
-            leadingZero = false;
         }
         if(list.isEmpty()){
             list.append(0);
@@ -122,25 +128,25 @@ public class BigNumArithmetic{
         return s.toString();
     }
     public String performAddition(String operand1, String operand2) {
-        // Remove leading zeros from operands
+        // Make list1 and list2 of equal length by padding with leading zeros if necessary
         LList list1 = stringToLL(operand1);
         LList list2 = stringToLL(operand2);
-        operand1 = operand1.replaceFirst("^0+(?!$)", "");
-        operand2 = operand2.replaceFirst("^0+(?!$)", "");
-
-        // Make operand1 and operand2 of equal length by padding with leading zeros if necessary
-        int maxLength = Math.max(operand1.length(), operand2.length());
-        operand1 = String.format("%" + maxLength + "s", operand1).replace(' ', '0');
-        operand2 = String.format("%" + maxLength + "s", operand2).replace(' ', '0');
+        int maxLength = Math.max(list1.length(), list2.length());
+        while (list1.length() < maxLength) {
+            list1.append(0); // Pad list1 with leading zeros
+        }
+        while (list2.length() < maxLength) {
+            list2.append(0); // Pad list2 with leading zeros
+        }
 
         // Initialize variables for addition
         StringBuilder sum = new StringBuilder();
         int carry = 0;
 
         // Traverse both operands from right to left and perform addition
-        for (int i = maxLength - 1; i >= 0; i--) {
-            int digit1 = operand1.charAt(i) - '0';
-            int digit2 = operand2.charAt(i) - '0';
+        for (int i = 0; i < maxLength; i++) {
+            int digit1 = (int) list1.getValue();
+            int digit2 = (int) list2.getValue();
 
             int total = digit1 + digit2 + carry;
             int resultDigit = total % 10;
@@ -148,6 +154,10 @@ public class BigNumArithmetic{
 
             // Prepend the resultDigit to the sum
             sum.insert(0, resultDigit);
+
+            // Move to the previous nodes in both lists
+            list1.next();
+            list2.next();
         }
 
         // Add any remaining carry
@@ -155,15 +165,23 @@ public class BigNumArithmetic{
             sum.insert(0, carry);
         }
 
+
+
         // Return the sum as a string
         return sum.toString();
     }
+
 
     public String performSubtraction(String operand1, String operand2){
 
         return null;
     }
     public String performMultiplication(String operand1, String operand2){
+        LList list1 = stringToLL(operand1);
+        LList list2 = stringToLL(operand2);
+        int maxLength = Math.max(list1.length(), list2.length());
+        // Initialize variables for addition
+        StringBuilder sum = new StringBuilder();
         return null;
     }
 }
