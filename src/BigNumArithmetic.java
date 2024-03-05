@@ -176,9 +176,9 @@ public class BigNumArithmetic{
 
         return null;
     }
-    public String performMultiplication(String operand1, String operand2){
-        LList list1 = stringToLL(operand1);
-        LList list2 = stringToLL(operand2);
+    public String performMultiplication(String operand1, String operand2) {
+        LList list2 = stringToLL(operand1); // Second operand
+        LList list1 = stringToLL(operand2); // First operand
         int maxLength = Math.max(list1.length(), list2.length());
         // Initialize variables for addition
         String sum = String.valueOf(new StringBuilder());
@@ -186,20 +186,27 @@ public class BigNumArithmetic{
         int total2 = 0;
         int digit1 = 0;
         int digit2 = 0;
-        for(int i =0; i < list2.length(); i++)
-        {
-           digit2 = (int) list2.getValue();
-           list2.next();
-           total2 = 0;
-           for(int n = 0; n < list1.length(); n++) {
+        int multiplier = 1; // Initialize multiplier for the least significant digit of the second operand
+        while (!list2.isAtEnd()) {
+            digit2 = (int) list2.getValue();
+            list2.next();
+            multiplier = 1; // Reset multiplier for each digit of the second operand
+            total2 = 0;
+            list1.moveToStart(); // Reset the pointer for the first operand to the beginning
+            while (!list1.isAtEnd()) {
                 digit1 = (int) list1.getValue();
                 list1.next();
-                total2 += digit1 * digit2 * (Math.pow(10, n));
-
+                total2 += digit1 * digit2 * multiplier;
+                multiplier *= 10; // Update multiplier for the next digit of the first operand
+                if(list2.isAtEnd())
+                {
+                    total2 *= 10;
+                }
             }
-           total1 += total2 * (Math.pow(10, i));
+            total1 += total2;
+
         }
-        return sum.toString();
+        return String.valueOf(total1);
     }
 }
 
