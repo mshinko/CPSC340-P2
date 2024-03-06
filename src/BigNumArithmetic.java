@@ -186,18 +186,19 @@ public class BigNumArithmetic{
         int total2 = 0;
         int digit1 = 0;
         int digit2 = 0;
-        int multiplier = 1; // Initialize multiplier for the least significant digit of the second operand
+        int multiplier1 = 0; // Initialize multiplier for the least significant digit of the second operand
+        int multiplier2 = 0;
         while (!list2.isAtEnd()) {
             digit2 = (int) list2.getValue();
             list2.next();
-            multiplier = 1; // Reset multiplier for each digit of the second operand
+            multiplier1 = 1; // Reset multiplier for each digit of the second operand
             total2 = 0;
             list1.moveToStart(); // Reset the pointer for the first operand to the beginning
             while (!list1.isAtEnd()) {
                 digit1 = (int) list1.getValue();
                 list1.next();
-                total2 += digit1 * digit2 * multiplier;
-                multiplier *= 10; // Update multiplier for the next digit of the first operand
+                total2 += digit1 * digit2 * multiplier1 * multiplier2;
+                multiplier2 *= 10; // Update multiplier for the next digit of the first operand
                 if(list2.isAtEnd())
                 {
                     total2 *= 10;
