@@ -179,35 +179,31 @@ public class BigNumArithmetic{
     public String performMultiplication(String operand1, String operand2) {
         LList list2 = stringToLL(operand1); // Second operand
         LList list1 = stringToLL(operand2); // First operand
+        int max1 = list1.getSize();
+        int max2 = list2.getSize();
         int maxLength = Math.max(list1.length(), list2.length());
         // Initialize variables for addition
         String sum = String.valueOf(new StringBuilder());
-        int total1 = 0;
+        int total = 0;
         int total2 = 0;
         int digit1 = 0;
         int digit2 = 0;
-        int multiplier1 = 0; // Initialize multiplier for the least significant digit of the second operand
-        int multiplier2 = 0;
-        while (!list2.isAtEnd()) {
-            digit2 = (int) list2.getValue();
-            list2.next();
-            multiplier1 = 1; // Reset multiplier for each digit of the second operand
-            total2 = 0;
-            list1.moveToStart(); // Reset the pointer for the first operand to the beginning
-            while (!list1.isAtEnd()) {
-                digit1 = (int) list1.getValue();
-                list1.next();
-                total2 += digit1 * digit2 * multiplier1 * multiplier2;
-                multiplier2 *= 10; // Update multiplier for the next digit of the first operand
-                if(list2.isAtEnd())
-                {
-                    total2 *= 10;
-                }
+        int multiplier1 = 1; // Initialize multiplier for the least significant digit of the second operand
+        int multiplier2 = 1;
+        for(int i = 0; i < max1; i++){
+            digit1 = (int) list1.getValue();
+            multiplier2 = 1;
+            list2.moveToStart();
+            for(int j =0; j < max2; j++){
+                digit2 = (int) list2.getValue();
+                total += digit1 * multiplier1 * digit2 * multiplier2;
+                list2.next();
+                multiplier2 *= 10;
             }
-            total1 += total2;
-
+            list1.next();
+            multiplier1 *= 10;
         }
-        return String.valueOf(total1);
+        return String.valueOf(total);
     }
 }
 

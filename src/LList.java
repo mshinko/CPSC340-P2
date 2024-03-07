@@ -35,6 +35,10 @@ class LList implements List {
         listSize++;
         return true;
     }
+    public int getSize()
+    {
+        return listSize;
+    }
 
     // Remove and return current element
     public Object remove () throws NoSuchElementException {
