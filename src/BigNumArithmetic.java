@@ -45,7 +45,20 @@ public class BigNumArithmetic{
                             operation = token;
                             result = performAddition(operand1, operand2);
                         } else if (token.equals("-")) {
-                            result = performSubtraction(operand1, operand2);
+                            if (operand1.length() > operand2.length()) {
+                                result = performSubtraction(operand1, operand2);
+                            }else if(operand1.length() < operand2.length()){
+                                result = performSubtraction(operand2, operand1);
+                            } else{
+                                int comparison = operand1.compareTo(operand2);
+                                if(comparison == 0){
+                                    result = performSubtraction(operand1, operand2);
+                                } else if (comparison > 0){
+                                    result = performSubtraction(operand1, operand2);
+                                } else {
+                                    result = performSubtraction(operand2, operand1);
+                                }
+                            }
                         } else if (token.equals("*")) {
                             result = performMultiplication(operand1, operand2);
                         }
@@ -175,11 +188,43 @@ public class BigNumArithmetic{
     public String performSubtraction(String operand1, String operand2) {
         LList list1 = stringToLL(operand1);
         LList list2 = stringToLL(operand2);
-
-        // Make list1 and list2 of equal length by padding with leading zeros if necessary
+        int max1 = list1.length();
+        int max2 = list2.length();
+        int digit1 = 0;
+        int digit2 = 0;
         int maxLength = Math.max(list1.length(), list2.length());
-       return null;
+        StringBuilder difference = new StringBuilder();
+        int borrow = 0;
+        while (list1.length() < maxLength) {
+            list1.append(0); // Pad list1 with leading zeros
+        }
+        while (list2.length() < maxLength) {
+            list2.append(0); // Pad list2 with leading zeros
+        }
+        // Traverse both operands from right to left and perform subtraction
+        for (int i = 0; i < maxLength; i++) {
+            digit1 = (int) list1.getValue();
+            digit2 = (int) list2.getValue();
 
+            digit1 -= borrow;
+            borrow = 0;
+            // If digit1 is smaller than digit2, borrow from the next higher place value
+            if (digit1 < digit2) {
+                digit1 += 10;
+                borrow = 1;
+            }
+            // Subtract digit2 from digit1
+            int resultDigit = digit1 - digit2;
+            // Append the resultDigit to the difference
+            difference.insert(0, resultDigit);
+
+            // Move to the previous nodes in both lists
+            list1.next();
+            list2.next();
+        }
+
+        // Return the difference as a string
+        return difference.toString().replaceFirst("^0+(?!$)", "");
     }
     public String performMultiplication(String operand1, String operand2) {
         LList list2 = stringToLL(operand1); // Second operand
