@@ -172,9 +172,14 @@ public class BigNumArithmetic{
     }
 
 
-    public String performSubtraction(String operand1, String operand2){
+    public String performSubtraction(String operand1, String operand2) {
+        LList list1 = stringToLL(operand1);
+        LList list2 = stringToLL(operand2);
 
-        return null;
+        // Make list1 and list2 of equal length by padding with leading zeros if necessary
+        int maxLength = Math.max(list1.length(), list2.length());
+       return null;
+
     }
     public String performMultiplication(String operand1, String operand2) {
         LList list2 = stringToLL(operand1); // Second operand
@@ -184,26 +189,27 @@ public class BigNumArithmetic{
         int maxLength = Math.max(list1.length(), list2.length());
         // Initialize variables for addition
         String sum = String.valueOf(new StringBuilder());
-        int total = 0;
-        int total2 = 0;
+        String totalFinal = "";
+        String total = "";
         int digit1 = 0;
         int digit2 = 0;
-        int multiplier1 = 1; // Initialize multiplier for the least significant digit of the second operand
-        int multiplier2 = 1;
+        String multiplier1 = "";
+        String multiplier2 = "";
         for(int i = 0; i < max1; i++){
             digit1 = (int) list1.getValue();
-            multiplier2 = 1;
+            multiplier2 = "";
             list2.moveToStart();
             for(int j =0; j < max2; j++){
                 digit2 = (int) list2.getValue();
-                total += digit1 * multiplier1 * digit2 * multiplier2;
+                total = performAddition(total, String.valueOf(digit1 * digit2) + multiplier1 + multiplier2);
                 list2.next();
-                multiplier2 *= 10;
+                multiplier2 += "0";
             }
             list1.next();
-            multiplier1 *= 10;
+            multiplier1 += "0";
         }
-        return String.valueOf(total);
+
+        return total;
     }
 }
 

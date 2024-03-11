@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="multiplier 2">
+    <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="multiplier fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input-file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input-file.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BigNumArithmetic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigNumArithmetic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BigNumArithmeticTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigNumArithmeticTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +63,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BigNumArithmetic">
+  <component name="RunManager" selected="JUnit.BigNumArithmeticTest.Multiply_test">
     <configuration name="BigNumArithmetic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BigNumArithmetic" />
       <module name="BigNumArithmetic" />
@@ -81,8 +82,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BigNumArithmeticTest.Multiply_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BigNumArithmetic" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BigNumArithmeticTest" />
+      <option name="METHOD_NAME" value="Multiply_test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BigNumArithmeticTest.Multiply_test" />
         <item itemvalue="Application.BigNumArithmetic" />
         <item itemvalue="JUnit.BigNumArithmeticTest.Add_test" />
       </list>
@@ -181,7 +193,14 @@
       <option name="project" value="LOCAL" />
       <updated>1709768292911</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="multiplier fix">
+      <created>1709770968129</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1709770968129</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,7 +222,8 @@
     <MESSAGE value="adding final professor said it is complete" />
     <MESSAGE value="multiply partial works" />
     <MESSAGE value="multiplier 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="multiplier 2" />
+    <MESSAGE value="multiplier fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="multiplier fix" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
