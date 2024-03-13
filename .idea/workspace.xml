@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="multiplier fix">
+    <list default="true" id="0e77cf1a-ff4f-46d4-9f6c-9b58e29f2d04" name="Changes" comment="subtraction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input-file" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/input-file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input-file.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/BigNumArithmetic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigNumArithmetic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BigNumArithmeticTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BigNumArithmeticTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,21 +64,19 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BigNumArithmetic">
+  <component name="RunManager" selected="JUnit.BigNumArithmeticTest">
     <configuration name="BigNumArithmetic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="BigNumArithmetic" />
       <module name="BigNumArithmetic" />
-      <option name="PROGRAM_PARAMETERS" value="input-file.txt" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BigNumArithmeticTest.Add_test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BigNumArithmeticTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BigNumArithmetic" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="BigNumArithmeticTest" />
-      <option name="METHOD_NAME" value="Add_test" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -91,11 +91,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BigNumArithmeticTest.testAppend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BigNumArithmetic" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BigNumArithmeticTest" />
+      <option name="METHOD_NAME" value="testAppend" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BigNumArithmeticTest.testEmptyInputFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BigNumArithmetic" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="BigNumArithmeticTest" />
+      <option name="METHOD_NAME" value="testEmptyInputFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BigNumArithmeticTest" />
         <item itemvalue="Application.BigNumArithmetic" />
+        <item itemvalue="JUnit.BigNumArithmeticTest.testEmptyInputFile" />
         <item itemvalue="JUnit.BigNumArithmeticTest.Multiply_test" />
-        <item itemvalue="JUnit.BigNumArithmeticTest.Add_test" />
+        <item itemvalue="JUnit.BigNumArithmeticTest.testAppend" />
       </list>
     </recent_temporary>
   </component>
@@ -213,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1710184998304</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="subtraction">
+      <created>1710188407222</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1710188407222</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -236,7 +265,8 @@
     <MESSAGE value="multiply partial works" />
     <MESSAGE value="multiplier 2" />
     <MESSAGE value="multiplier fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="multiplier fix" />
+    <MESSAGE value="subtraction" />
+    <option name="LAST_COMMIT_MESSAGE" value="subtraction" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
@@ -244,5 +274,10 @@
         <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
       </pinned-members>
     </pin-to-top-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BigNumArithmetic_java$BigNumArithmetic.ic" NAME="BigNumArithmetic Coverage Results" MODIFIED="1710350260978" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/BigNumArithmetic_java$BigNumArithmeticTest.ic" NAME="BigNumArithmeticTest Coverage Results" MODIFIED="1710350919083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/BigNumArithmetic_java$BigNumArithmeticTest_Multiply_test.ic" NAME="BigNumArithmeticTest.Multiply_test Coverage Results" MODIFIED="1710348816365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

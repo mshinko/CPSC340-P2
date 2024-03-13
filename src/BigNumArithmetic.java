@@ -1,11 +1,13 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
-public class BigNumArithmetic{
+        import java.io.File;
+        import java.io.FileNotFoundException;
+        import java.util.NoSuchElementException;
+        import java.util.Scanner;
+
+public class BigNumArithmetic {
 
     private LStack obj = new LStack();
+
     public static void main(String[] args) {
         if (args.length != 1) {
             System.err.println("Usage: java BigNumArithmetic <input-file>");
@@ -13,133 +15,142 @@ public class BigNumArithmetic{
         }
 
         String inputFile = args[0];
-        BigNumArithmetic bigNumArithmetic = new BigNumArithmetic();
-        bigNumArithmetic.processInputFile(inputFile);
-    }
 
-    public void processInputFile(String inputFile) {
-        String result = "";
-        String equation = "";
+
+        // Process input file
         try (Scanner scanner = new Scanner(new File(inputFile))) {
+            BigNumArithmetic bigNumArithmetic = new BigNumArithmetic();
+            // While loop to read the file when there are lines present
             while (scanner.hasNextLine()) {
-                obj.clear();
+                // Clear the stack
+                bigNumArithmetic.obj.clear();
+                // Each line as a string
                 String line = scanner.nextLine().trim(); // Trim to remove leading/trailing whitespace
-                equation = line.replaceAll("\\s+", " ") + " = ";
+                if (line.isEmpty()) {
+                    continue;
+                }
+                String equation = line.replaceAll("\\s+", " ") + " = "; // Replace the line
+                // Split the line into tokens
                 String[] tokens = line.split("\\s+");
-                String token = null;
+                String token;
+                int numOperators = 0;
+                int numOperands = 0;
+                // Boolean for if there are operands
+                boolean hasOperands = false;
+                // For loop to sort through the tokens
                 for (int i = 0; i < tokens.length; i++) {
                     token = tokens[i].trim();
                     if (token.length() == 0) {
                         continue;
                     }
+                    // If the token is a number, push it, increase the operands count, and set the hasOperands flag to true
                     if (!token.equals("+") && !token.equals("-") && !token.equals("*")) {
-                        obj.push(token);
+                        bigNumArithmetic.obj.push(token);
+                        numOperands++;
+                        hasOperands = true;
                     } else {
-                        if (obj.length() < 2) {
-                            System.out.println("Not enough values");
+                        // Otherwise, it's an operator
+                        numOperators++;
+                        // If there are no operands or more operators than operands, break
+                        if (!hasOperands || numOperators >= numOperands) {
+                            break;
                         }
-                        String operand1 = (String) obj.pop();
-                        String operand2 = (String) obj.pop();
-                        String operation = "";
-                        if (token.equals("+")) {
-                            operation = token;
-                            result = performAddition(operand1, operand2);
-                        } else if (token.equals("-")) {
-                            if (operand1.length() > operand2.length()) {
-                                result = performSubtraction(operand1, operand2);
-                            }else if(operand1.length() < operand2.length()){
-                                result = performSubtraction(operand2, operand1);
-                            } else{
-                                int comparison = operand1.compareTo(operand2);
-                                if(comparison == 0){
-                                    result = performSubtraction(operand1, operand2);
-                                } else if (comparison > 0){
-                                    result = performSubtraction(operand1, operand2);
-                                } else {
-                                    result = performSubtraction(operand2, operand1);
-                                }
+                        // If the stack has fewer than 2 elements, print the equation and continue
+                        if (bigNumArithmetic.obj.length() < 2) {
+                            System.out.println(equation);
+                            continue;
+                        } else {
+                            // Pop two operands from the stack
+                            String operand1 = (String) bigNumArithmetic.obj.pop();
+                            String operand2 = (String) bigNumArithmetic.obj.pop();
+                            String result;
+                            // Perform the corresponding operation
+                            if (token.equals("+")) {
+                                result = bigNumArithmetic.performAddition(operand1, operand2);
+                            } else if (token.equals("-")) {
+                                result = bigNumArithmetic.performSubtraction(operand1, operand2);
+                            } else if (token.equals("*")) {
+                                result = bigNumArithmetic.performMultiplication(operand1, operand2);
+                            } else {
+                                // This case should never happen, but if it does, print the equation and continue
+                                System.out.println(equation);
+                                continue;
                             }
-                        } else if (token.equals("*")) {
-                            result = performMultiplication(operand1, operand2);
+                            // Push the result of the performed operation
+                            bigNumArithmetic.obj.push(result);
                         }
-                        //System.out.println("Result " + result);
-
-                        obj.push(result);
                     }
                 }
-                if (!(token.length() == 0)) {
-                    if(!(obj.length() == 1))
-                    {
-                        System.out.println(equation);
-                    }else if(obj.length() == 1){
-                        equation += obj.pop();
-                        System.out.println(equation);
-                    }
+                // If the stack length is 1 and the number of operands is one more than the number of operators, print the equation and result
+                if (bigNumArithmetic.obj.length() == 1 && numOperands == numOperators + 1) {
+                    equation += bigNumArithmetic.obj.pop();
+                    System.out.println(equation);
+                } else {
+                    // Otherwise, just print the equation
+                    System.out.println(equation);
                 }
             }
-
-           // System.out.println(result);
         } catch (FileNotFoundException e) {
             System.err.println("Input file not found: " + e.getMessage());
         }
     }
-    public void ArrayToString(String[] array)
-    {
-        for(int i = 0; i < array.length; i++)
-        {
-            System.out.print(array[i]);
-        }
-    }
-    public LList stringToLL(String[] array) {
-        LList list = new LList();
-        for (int i = 0; i < array.length; i++) {
-            String token = array[i];
-            for (int j = 0; j < token.length(); j++) {
-                char digitChar = token.charAt(j);
-                int digit = Character.getNumericValue(digitChar);
-                list.append(digit);
-            }
-        }
-        return list;
-    }
 
     public LList stringToLL(String number) {
+        //Create a list of LList
         LList list = new LList();
+        // set an index
         int index = 0;
-        for(int n = 0; n < number.length(); n++)
-        {
-            if(number.charAt(n) != '0'){
+        //Loop iterating over every value of the string number
+        for (int n = 0; n < number.length(); n++) {
+            // is current character equal to 0
+            if (number.charAt(n) != '0') {
+                //if it is not 0 it updates the index to the current index which is n
                 index = n;
                 break;
             }
-            if(n == number.length() -1){
-                index = number.length() -1;
+            //if all characters in the string are 0 it sets it too the last index of the string
+            if (n == number.length() - 1) {
+                index = number.length() - 1;
             }
         }
+        //Removes leading zeros
         number = number.substring(index);
-        for (int i = number.length() -1; i >= 0; i--) {
+        //This loop iterates over each character of the updated number in reverse order
+        for (int i = number.length() - 1; i >= 0; i--) {
+            //character at index i
             char digitChar = number.charAt(i);
+            //converts the char to the numeric representation
             int digit = Character.getNumericValue(digitChar);
+            //adds the digit to the linked list
             list.append(digit);
         }
-        if(list.isEmpty()){
+        //if list empty just put a 0
+        if (list.isEmpty()) {
             list.append(0);
         }
+        //send back the list
         return list;
     }
-    public String LLtoString(LList list){
+
+    public String LLtoString(LList list) {
+        //Creates a stringbuilder
         StringBuilder s = new StringBuilder();
+        //Starts at the beginning of the list
         list.moveToStart();
-        while(!list.isAtEnd()){
+        //While there is more to look at
+        while (!list.isAtEnd()) {
             try {
+                //append the current value to the string
                 s.append(list.getValue());
                 list.next();
-            }catch (NoSuchElementException e){
+            } catch (NoSuchElementException e) {
                 e.printStackTrace();
             }
         }
+        //Return the string value
         return s.toString();
     }
+
     public String performAddition(String operand1, String operand2) {
         // Make list1 and list2 of equal length by padding with leading zeros if necessary
         LList list1 = stringToLL(operand1);
@@ -179,15 +190,35 @@ public class BigNumArithmetic{
         }
 
 
-
         // Return the sum as a string
         return sum.toString();
     }
 
 
     public String performSubtraction(String operand1, String operand2) {
-        LList list1 = stringToLL(operand1);
-        LList list2 = stringToLL(operand2);
+        LList list1;
+        LList list2;
+        operand1 = operand1.replaceFirst("^0+(?!$)", "");
+        operand2 = operand2.replaceFirst("^0+(?!$)", "");
+        if (operand1.length() > operand2.length()) {
+            list1 = stringToLL(operand1);
+            list2 = stringToLL(operand2);
+        } else if (operand1.length() < operand2.length()) {
+            list1 = stringToLL(operand2);
+            list2 = stringToLL(operand1);
+        } else {
+            int comparison = operand1.compareTo(operand2);
+            if (comparison == 0) {
+                list1 = stringToLL(operand1);
+                list2 = stringToLL(operand2);
+            } else if (comparison > 0) {
+                list1 = stringToLL(operand1);
+                list2 = stringToLL(operand2);
+            } else {
+                list1 = stringToLL(operand2);
+                list2 = stringToLL(operand1);
+            }
+        }
         int max1 = list1.length();
         int max2 = list2.length();
         int digit1 = 0;
@@ -225,6 +256,7 @@ public class BigNumArithmetic{
 
         // Return the difference as a string
         return difference.toString().replaceFirst("^0+(?!$)", "");
+
     }
     public String performMultiplication(String operand1, String operand2) {
         LList list2 = stringToLL(operand1); // Second operand
@@ -257,4 +289,5 @@ public class BigNumArithmetic{
         return total;
     }
 }
+
 
